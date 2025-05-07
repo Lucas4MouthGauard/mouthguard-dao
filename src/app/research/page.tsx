@@ -10,15 +10,15 @@ import { ResearchForm } from '@/components/ui/ResearchForm'
 import React from 'react'
 
 const formSchema = z.object({
-  name: z.string().min(2, '姓名至少2个字符'),
-  email: z.string().email('请输入有效的邮箱地址'),
+  name: z.string().min(2, 'Name must be at least 2 characters'),
+  email: z.string().email('Please enter a valid email address'),
   role: z.enum(['doctor', 'researcher', 'patient', 'other']),
-  institution: z.string().min(2, '机构名称至少2个字符'),
+  institution: z.string().min(2, 'Institution name must be at least 2 characters'),
   dataType: z.enum(['clinical', 'imaging', 'genetic', 'other']),
-  dataDescription: z.string().min(10, '请详细描述数据内容'),
+  dataDescription: z.string().min(10, 'Please describe the data in detail'),
   privacyLevel: z.enum(['public', 'private', 'restricted']),
   consent: z.boolean().refine((val) => val === true, {
-    message: '必须同意数据使用条款',
+    message: 'You must agree to the data usage terms',
   }),
 })
 

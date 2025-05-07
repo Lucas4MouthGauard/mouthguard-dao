@@ -13,11 +13,28 @@ export default function ContactPage() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [errors, setErrors] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+  })
+
+  const validate = () => {
+    const newErrors: typeof errors = { name: '', email: '', subject: '', message: '' }
+    if (!formData.name || formData.name.length < 2) newErrors.name = 'Name must be at least 2 characters.'
+    if (!formData.email) newErrors.email = 'Please enter your email.'
+    else if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(formData.email)) newErrors.email = 'Please enter a valid email address.'
+    if (!formData.subject || formData.subject.length < 2) newErrors.subject = 'Subject must be at least 2 characters.'
+    if (!formData.message || formData.message.length < 5) newErrors.message = 'Message must be at least 5 characters.'
+    setErrors(newErrors)
+    return Object.values(newErrors).every(v => !v)
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (!validate()) return
     setIsSubmitting(true)
-    // 模拟提交
     await new Promise((resolve) => setTimeout(resolve, 1500))
     setIsSubmitting(false)
     setIsSubmitted(true)
@@ -76,57 +93,49 @@ export default function ContactPage() {
               className="glass p-8 rounded-xl"
             >
               <h2 className="text-2xl font-bold mb-6">Send us a Message</h2>
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6" noValidate>
                 <div>
                   <label className="block text-sm font-medium mb-2">Name</label>
                   <input
                     type="text"
-                    required
                     className="w-full px-4 py-2 bg-black/50 rounded-lg border border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     value={formData.name}
-                    onChange={(e) =>
-                      setFormData({ ...formData, name: e.target.value })
-                    }
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   />
+                  {errors.name && <div className="mt-1 text-red-400 text-sm">{errors.name}</div>}
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium mb-2">Email</label>
                   <input
-                    type="email"
-                    required
+                    type="text"
                     className="w-full px-4 py-2 bg-black/50 rounded-lg border border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     value={formData.email}
-                    onChange={(e) =>
-                      setFormData({ ...formData, email: e.target.value })
-                    }
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   />
+                  {errors.email && <div className="mt-1 text-red-400 text-sm">{errors.email}</div>}
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium mb-2">Subject</label>
                   <input
                     type="text"
-                    required
                     className="w-full px-4 py-2 bg-black/50 rounded-lg border border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     value={formData.subject}
-                    onChange={(e) =>
-                      setFormData({ ...formData, subject: e.target.value })
-                    }
+                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                   />
+                  {errors.subject && <div className="mt-1 text-red-400 text-sm">{errors.subject}</div>}
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium mb-2">Message</label>
                   <textarea
-                    required
                     rows={4}
                     className="w-full px-4 py-2 bg-black/50 rounded-lg border border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     value={formData.message}
-                    onChange={(e) =>
-                      setFormData({ ...formData, message: e.target.value })
-                    }
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   />
+                  {errors.message && <div className="mt-1 text-red-400 text-sm">{errors.message}</div>}
                 </div>
 
                 <button
