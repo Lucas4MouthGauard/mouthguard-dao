@@ -1,80 +1,62 @@
 'use client'
 
 import Link from 'next/link'
-import { Github, Twitter, Mail } from 'lucide-react'
+import { Twitter } from 'lucide-react'
 import { Container } from '@/components/layout/Container'
+import { ReactNode } from 'react'
 
-const footerLinks = {
+type FooterLink = {
+  name: string
+  href: string
+  icon?: any
+  comingSoon?: boolean
+}
+
+const footerLinks: Record<string, FooterLink[]> = {
   product: [
-    { name: '研究', href: '/research' },
-    { name: '技术', href: '/technology' },
-    { name: '生态', href: '/ecosystem' },
+    { name: 'Research', href: '/research' },
+    { name: 'Technology', href: '/technology' },
+    { name: 'Ecosystem', href: '/ecosystem' },
   ],
   resources: [
-    { name: '文档', href: '/docs' },
-    { name: 'API', href: '/api' },
-    { name: '博客', href: '/blog' },
+    { name: 'Docs', href: '/docs' },
+    { name: 'API', href: '/api', comingSoon: true },
   ],
   company: [
-    { name: '关于我们', href: '/about' },
-    { name: '联系我们', href: '/contact' },
-    { name: '加入我们', href: '/careers' },
+    { name: 'About', href: '/about' },
+    { name: 'Contact', href: '/contact' },
+    { name: 'Careers', href: '/careers' },
+  ],
+  community: [
+    { name: 'Twitter', href: 'https://twitter.com/mouthguard-dao', icon: Twitter },
   ],
 }
 
 export function Footer() {
   return (
-    <footer className="bg-black/50 backdrop-blur-lg">
+    <footer className="bg-black/70 backdrop-blur-lg border-t border-white/10 pt-12">
       <Container>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 py-12">
-          {/* Logo and Description */}
-          <div className="col-span-1 md:col-span-2">
-            <Link href="/" className="flex items-center">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 pb-10">
+          {/* Brand & Slogan */}
+          <div className="col-span-1 flex flex-col space-y-4">
+            <Link href="/" className="flex items-center mb-2">
               <span className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
                 MouthGuard DAO
               </span>
             </Link>
-            <p className="mt-4 text-gray-400 max-w-md">
-              一个专注于口腔健康研究的去中心化科学平台，结合 Web3 和 AI 技术，支持用户贡献健康数据、训练 AI 模型并获得激励。
+            <span className="text-sm text-blue-400 font-semibold tracking-wide">Empowering Global Oral Health Research</span>
+            <p className="text-gray-400 text-sm max-w-xs">
+              A next-generation decentralized science platform for oral health, leveraging AI and Web3 to accelerate research, data sharing, and innovation worldwide.
             </p>
-            <div className="flex space-x-4 mt-6">
-              <a
-                href="https://github.com/mouthguard-dao"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <Github className="w-6 h-6" />
-              </a>
-              <a
-                href="https://twitter.com/mouthguard-dao"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <Twitter className="w-6 h-6" />
-              </a>
-              <a
-                href="mailto:contact@mouthguard-dao.com"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <Mail className="w-6 h-6" />
-              </a>
-            </div>
           </div>
 
-          {/* Links */}
+          {/* Product */}
           <div>
-            <h3 className="text-sm font-semibold text-gray-300 uppercase tracking-wider">
-              产品
-            </h3>
-            <ul className="mt-4 space-y-4">
+            <h3 className="text-sm font-semibold text-gray-300 uppercase tracking-wider mb-4">Product</h3>
+            <ul className="space-y-3">
               {footerLinks.product.map((link) => (
                 <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
+                  <Link href={link.href} className="text-gray-400 hover:text-blue-400 transition-colors">
                     {link.name}
                   </Link>
                 </li>
@@ -82,30 +64,68 @@ export function Footer() {
             </ul>
           </div>
 
+          {/* Resources */}
           <div>
-            <h3 className="text-sm font-semibold text-gray-300 uppercase tracking-wider">
-              资源
-            </h3>
-            <ul className="mt-4 space-y-4">
+            <h3 className="text-sm font-semibold text-gray-300 uppercase tracking-wider mb-4">Resources</h3>
+            <ul className="space-y-3">
               {footerLinks.resources.map((link) => (
                 <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
+                  <Link href={link.href} className="text-gray-400 hover:text-blue-400 transition-colors">
                     {link.name}
+                    {link.comingSoon && <span className="text-xs text-gray-500 ml-1">(Coming Soon)</span>}
                   </Link>
                 </li>
               ))}
             </ul>
+          </div>
+
+          {/* Community & Newsletter */}
+          <div className="flex flex-col space-y-6">
+            <div>
+              <h3 className="text-sm font-semibold text-gray-300 uppercase tracking-wider mb-4">Community</h3>
+              <div className="flex space-x-4">
+                {footerLinks.community.map((item) => (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-blue-400 transition-colors"
+                  >
+                    <item.icon className="w-6 h-6" />
+                  </a>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-gray-300 uppercase tracking-wider mb-2">Subscribe</h3>
+              <form className="flex items-center space-x-2">
+                <input
+                  type="email"
+                  placeholder="Your email"
+                  className="px-3 py-2 rounded-lg bg-black/40 border border-white/10 text-sm text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                <button
+                  type="submit"
+                  className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg text-sm font-semibold hover:opacity-90 transition"
+                >
+                  Subscribe
+                </button>
+              </form>
+            </div>
           </div>
         </div>
 
+        {/* Gradient Divider */}
+        <div className="h-1 w-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full mb-6 opacity-60" />
+
         {/* Bottom Bar */}
-        <div className="py-8 border-t border-gray-800">
-          <p className="text-gray-400 text-sm text-center">
-            © {new Date().getFullYear()} MouthGuard DAO. 保留所有权利。
-          </p>
+        <div className="py-6 flex flex-col md:flex-row items-center justify-between text-gray-400 text-sm">
+          <span>© {new Date().getFullYear()} MouthGuard DAO. All rights reserved.</span>
+          <div className="flex space-x-4 mt-2 md:mt-0">
+            <Link href="/privacy" className="hover:text-blue-400 transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-blue-400 transition-colors">Terms of Service</Link>
+          </div>
         </div>
       </Container>
     </footer>

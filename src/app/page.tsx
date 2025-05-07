@@ -50,9 +50,6 @@ export default function HomePage() {
               >
                 Join Research
               </Link>
-              <button className="px-8 py-3 bg-black/50 text-white rounded-lg border border-white/10 hover:bg-black/70 transition-colors">
-                Connect Wallet
-              </button>
             </div>
           </motion.div>
         </div>

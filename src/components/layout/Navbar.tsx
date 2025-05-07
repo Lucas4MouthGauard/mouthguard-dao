@@ -9,11 +9,11 @@ import { Container } from '@/components/layout/Container'
 import { cn } from '@/lib/utils'
 
 const navigation = [
-  { name: '首页', href: '/' },
-  { name: '研究', href: '/research' },
-  { name: '技术', href: '/technology' },
-  { name: '生态', href: '/ecosystem' },
-  { name: '联系我们', href: '/contact' },
+  { name: 'Home', href: '/' },
+  { name: 'Research', href: '/research' },
+  { name: 'Technology', href: '/technology' },
+  { name: 'Ecosystem', href: '/ecosystem' },
+  { name: 'Contact', href: '/contact' },
 ]
 
 export default function Navbar() {
@@ -58,13 +58,6 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* Connect Wallet Button */}
-          <div className="hidden md:block">
-            <Button variant="secondary" size="sm">
-              连接钱包
-            </Button>
-          </div>
-
           {/* Mobile Menu Button */}
           <button
             className="md:hidden text-gray-300 hover:text-white"
@@ -100,9 +93,6 @@ export default function Navbar() {
                     {item.name}
                   </Link>
                 ))}
-                <Button variant="secondary" size="sm" className="w-full">
-                  连接钱包
-                </Button>
               </div>
             </Container>
           </motion.div>
