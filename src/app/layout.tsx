@@ -8,8 +8,28 @@ import { Footer } from '@/components/layout/Footer'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'MouthGuard - Decentralized Oral Health Research Platform',
-  description: 'A decentralized science platform focused on oral health research, combining Web3 and AI technologies to support user contributions, model training, and incentivization.',
+  title: 'MouthGuardDao',
+  description: 'The first AI-powered decentralized science platform for dental health',
+  openGraph: {
+    title: 'MouthGuardDao',
+    description: 'The first AI-powered decentralized science platform for dental health',
+    url: 'https://mouthguardonline.com',
+    type: 'website',
+    images: [
+      {
+        url: 'https://mouthguardonline.com/og.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'MouthGuardDao',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'MouthGuardDao',
+    description: 'The first AI-powered decentralized science platform for dental health',
+    images: ['https://mouthguardonline.com/og.jpg'],
+  },
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
