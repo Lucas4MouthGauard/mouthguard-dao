@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Twitter } from 'lucide-react'
 import { Container } from '@/components/layout/Container'
 import { ReactNode } from 'react'
+import { useState } from 'react'
 
 type FooterLink = {
   name: string
@@ -33,6 +34,27 @@ const footerLinks: Record<string, FooterLink[]> = {
 }
 
 export function Footer() {
+  const [subscribing, setSubscribing] = useState(false)
+  const [showToast, setShowToast] = useState(false)
+  const [email, setEmail] = useState('')
+  const [error, setError] = useState('')
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+      setError('Please enter a valid email address.')
+      return
+    }
+    setError('')
+    setSubscribing(true)
+    setTimeout(() => {
+      setSubscribing(false)
+      setShowToast(true)
+      setEmail('')
+      setTimeout(() => setShowToast(false), 2000)
+    }, 800)
+  }
+
   return (
     <footer className="bg-black/70 backdrop-blur-lg border-t border-white/10 pt-12">
       <Container>
@@ -70,10 +92,16 @@ export function Footer() {
             <ul className="space-y-3">
               {footerLinks.resources.map((link) => (
                 <li key={link.name}>
-                  <Link href={link.href} className="text-gray-400 hover:text-blue-400 transition-colors">
-                    {link.name}
-                    {link.comingSoon && <span className="text-xs text-gray-500 ml-1">(Coming Soon)</span>}
-                  </Link>
+                  {link.comingSoon ? (
+                    <span className="text-gray-500 cursor-not-allowed select-none opacity-60">
+                      {link.name}
+                      <span className="text-xs ml-1">(Coming Soon)</span>
+                    </span>
+                  ) : (
+                    <Link href={link.href} className="text-gray-400 hover:text-blue-400 transition-colors">
+                      {link.name}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -99,19 +127,39 @@ export function Footer() {
             </div>
             <div>
               <h3 className="text-sm font-semibold text-gray-300 uppercase tracking-wider mb-2">Subscribe</h3>
-              <form className="flex items-center space-x-2">
+              <form className="flex items-center space-x-2" onSubmit={handleSubscribe}>
                 <input
-                  type="email"
+                  type="text"
                   placeholder="Your email"
                   className="px-3 py-2 rounded-lg bg-black/40 border border-white/10 text-sm text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                  required
                 />
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg text-sm font-semibold hover:opacity-90 transition"
+                  className={`px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg text-sm font-semibold transition flex items-center justify-center ${subscribing ? 'opacity-70 cursor-not-allowed' : 'hover:opacity-90'}`}
+                  disabled={subscribing}
                 >
+                  <span className={subscribing ? 'animate-spin-slow' : ''} style={subscribing ? {display:'inline-block',transition:'transform 0.8s'} : {}}>
+                    {subscribing ? (
+                      <svg className="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" className="opacity-25" />
+                        <path d="M4 12a8 8 0 018-8" stroke="currentColor" strokeWidth="4" className="opacity-75" />
+                      </svg>
+                    ) : null}
+                  </span>
                   Subscribe
                 </button>
               </form>
+              {error && (
+                <div className="mt-2 text-red-400 text-sm">{error}</div>
+              )}
+              {showToast && (
+                <div className="fixed bottom-8 right-8 bg-black/90 text-white px-6 py-3 rounded-lg shadow-lg z-50 animate-fade-in">
+                  Subscription successful!
+                </div>
+              )}
             </div>
           </div>
         </div>
