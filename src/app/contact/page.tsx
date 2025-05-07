@@ -154,7 +154,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold mb-1">Email</h3>
-                      <p className="text-gray-400">contact@mouthguard-dao.com</p>
+                      <p className="text-gray-400">contact@mouthguardonline.com</p>
                     </div>
                   </div>
 
@@ -165,11 +165,7 @@ export default function ContactPage() {
                     <div>
                       <h3 className="text-lg font-semibold mb-1">Address</h3>
                       <p className="text-gray-400">
-                        123 Blockchain Street
-                        <br />
-                        San Francisco, CA 94105
-                        <br />
-                        United States
+                        707 Parnassus Avenue, San Francisco, CA 94143
                       </p>
                     </div>
                   </div>
