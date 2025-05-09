@@ -47,6 +47,19 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
+      <head>
+        <title>MouthGuardDao</title>
+        <meta name="description" content="The first AI-powered decentralized science platform for dental health" />
+        <meta property="og:title" content="MouthGuardDao" />
+        <meta property="og:description" content="The first AI-powered decentralized science platform for dental health" />
+        <meta property="og:image" content="https://mouthguardonline.com/og.jpg" />
+        <meta property="og:url" content="https://mouthguardonline.com" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="MouthGuardDao" />
+        <meta name="twitter:description" content="The first AI-powered decentralized science platform for dental health" />
+        <meta name="twitter:image" content="https://mouthguardonline.com/og.jpg" />
+      </head>
       <body className={`${inter.className} min-h-screen bg-background text-foreground antialiased`}>
         <div className="relative flex min-h-screen flex-col">
           <Navbar />
