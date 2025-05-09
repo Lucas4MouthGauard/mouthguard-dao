@@ -30,6 +30,8 @@ export function ResearchForm() {
     dataType: '',
     agreement: '',
   })
+  const [image, setImage] = useState<File | null>(null)
+  const [imageError, setImageError] = useState('')
 
   const validate = () => {
     const newErrors: typeof errors = { role: '', email: '', organization: '', dataType: '', agreement: '' }
@@ -39,8 +41,15 @@ export function ResearchForm() {
     if (!formData.organization || formData.organization.length < 2) newErrors.organization = 'Organization name must be at least 2 characters.'
     if (!formData.dataType) newErrors.dataType = 'Please select a data type.'
     if (!formData.agreement) newErrors.agreement = 'You must agree to the terms.'
+    if (image) {
+      if (!image.type.startsWith('image/')) setImageError('File must be an image.')
+      else if (image.size > 5 * 1024 * 1024) setImageError('Image must be less than 5MB.')
+      else setImageError('')
+    } else {
+      setImageError('')
+    }
     setErrors(newErrors)
-    return Object.values(newErrors).every(v => !v)
+    return Object.values(newErrors).every(v => !v) && !imageError
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -150,6 +159,37 @@ export function ResearchForm() {
             )}
           </div>
           {errors.dataType && <div className="mt-1 text-red-400 text-sm">{errors.dataType}</div>}
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium mb-2">Image (optional, &lt;5MB)</label>
+          <div className="flex items-center space-x-4">
+            <label className="inline-block px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg cursor-pointer hover:opacity-90 transition">
+              Choose Image
+              <input
+                type="file"
+                accept="image/*"
+                onChange={e => {
+                  const file = e.target.files?.[0] || null
+                  setImage(file)
+                  if (file) {
+                    if (!file.type.startsWith('image/')) setImageError('File must be an image.')
+                    else if (file.size > 5 * 1024 * 1024) setImageError('Image must be less than 5MB.')
+                    else setImageError('')
+                  } else {
+                    setImageError('')
+                  }
+                }}
+                className="hidden"
+              />
+            </label>
+            <span className="text-sm text-gray-400">
+              {image
+                ? `Selected: ${image.name} (${(image.size/1024/1024).toFixed(2)} MB)`
+                : 'No file selected'}
+            </span>
+          </div>
+          {imageError && <div className="mt-1 text-red-400 text-sm">{imageError}</div>}
         </div>
 
         <div className="flex items-start space-x-3">
