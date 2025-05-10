@@ -46,7 +46,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
       <head>
         <title>MouthGuardDao</title>
         <meta name="description" content="The first AI-powered decentralized science platform for dental health" />
@@ -60,7 +60,7 @@ export default function RootLayout({
         <meta name="twitter:description" content="The first AI-powered decentralized science platform for dental health" />
         <meta name="twitter:image" content="https://mouthguardonline.com/og.jpg" />
       </head>
-      <body className={`${inter.className} min-h-screen bg-background text-foreground antialiased`}>
+      <body className={`${inter.className} min-h-screen bg-[var(--neutral-50)] text-[var(--neutral-800)] antialiased`}>
         <div className="relative flex min-h-screen flex-col">
           <Navbar />
           <main className="flex-1">

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @import '../styles/theme.css';
-@import '../styles/animations.css';
+@import '../styles/components.css';
 
 @layer base {
   :root {
@@ -55,9 +55,30 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-[var(--neutral-50)] text-[var(--neutral-900)];
     font-feature-settings: "rlig" 1, "calt" 1;
     min-height: 100vh;
+  }
+
+  /* 优化滚动条 */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--neutral-100);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--neutral-300);
+    border-radius: var(--radius-full);
+  }
+
+  /* 文本选择样式 */
+  ::selection {
+    background: var(--primary-200);
+    color: var(--primary-900);
   }
 }
 
@@ -70,8 +91,20 @@
     @apply py-12 sm:py-16 lg:py-20;
   }
   
-  .heading {
+  .heading-1 {
     @apply text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight;
+  }
+  
+  .heading-2 {
+    @apply text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight;
+  }
+  
+  .heading-3 {
+    @apply text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight;
+  }
+  
+  .heading-4 {
+    @apply text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight;
   }
   
   .subheading {
@@ -79,21 +112,19 @@
   }
   
   .card {
-    @apply rounded-lg border bg-card text-card-foreground shadow-sm;
+    @apply bg-[var(--neutral-50)] rounded-xl border border-[var(--neutral-200)] shadow-sm hover:shadow-md transition-shadow duration-200;
   }
   
   .btn {
-    @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors 
-    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 
-    disabled:opacity-50 disabled:pointer-events-none ring-offset-background;
+    @apply inline-flex items-center justify-center px-4 py-2 rounded-lg font-medium transition-all duration-200;
   }
   
   .btn-primary {
-    @apply bg-primary text-primary-foreground hover:bg-primary/90;
+    @apply bg-gradient-to-r from-[var(--primary-500)] to-[var(--accent-500)] text-[var(--neutral-50)] hover:opacity-90;
   }
   
   .btn-secondary {
-    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80;
+    @apply bg-[var(--neutral-200)] text-[var(--neutral-800)] hover:bg-[var(--neutral-300)];
   }
   
   .btn-outline {
@@ -101,10 +132,7 @@
   }
   
   .input {
-    @apply flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm 
-    ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium 
-    placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 
-    focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
+    @apply w-full px-4 py-2 rounded-lg border border-[var(--neutral-300)] bg-[var(--neutral-50)] text-[var(--neutral-900)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-500)] focus:border-transparent;
   }
 
   .gradient-border {
@@ -114,6 +142,25 @@
   .gradient-border::before {
     content: '';
     @apply absolute inset-0 rounded-lg p-[1px] bg-gradient-to-r from-blue-500 to-purple-500 -z-10;
+  }
+
+  /* 响应式布局网格 */
+  .grid-auto-fit {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  }
+
+  .grid-auto-fill {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  }
+
+  /* 页面过渡动画 */
+  .page-transition {
+    @apply animate-fade-in;
+  }
+
+  /* 内容区块动画 */
+  .content-block {
+    @apply animate-slide-up;
   }
 }
 
@@ -152,6 +199,18 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+
+  .flex-between {
+    @apply flex items-center justify-between;
+  }
+
+  .absolute-center {
+    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+  }
 }
 
 /* Custom Animations */
@@ -173,9 +232,7 @@ body {
 
 /* Glass Effect */
 .glass {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  @apply backdrop-blur-md bg-white/70 border border-white/20;
 }
 
 /* Custom Scrollbar */
@@ -184,14 +241,71 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #000;
+  background: var(--neutral-100);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #333;
+  background: var(--neutral-300);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #444;
+  background: var(--neutral-400);
+}
+
+/* Animation */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-down {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.5s ease-out;
+}
+
+.animate-slide-down {
+  animation: slide-down 0.5s ease-out;
+}
+
+/* Glass Effect */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark .glass {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }

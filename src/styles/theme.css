@@ -19,6 +19,68 @@
   --input: 214.3 31.8% 91.4%;
   --ring: 221.2 83.2% 53.3%;
   --radius: 0.5rem;
+
+  /* 主色调 - 医疗蓝 */
+  --primary-50: #e6f1ff;
+  --primary-100: #cce3ff;
+  --primary-200: #99c7ff;
+  --primary-300: #66abff;
+  --primary-400: #338fff;
+  --primary-500: #0073ff;
+  --primary-600: #005ccc;
+  --primary-700: #004599;
+  --primary-800: #002e66;
+  --primary-900: #001733;
+
+  /* 辅助色 - 科技紫 */
+  --accent-50: #f5f0ff;
+  --accent-100: #ebe1ff;
+  --accent-200: #d7c3ff;
+  --accent-300: #c3a5ff;
+  --accent-400: #af87ff;
+  --accent-500: #9b69ff;
+  --accent-600: #7c54cc;
+  --accent-700: #5d3f99;
+  --accent-800: #3e2a66;
+  --accent-900: #1f1533;
+
+  /* 中性色 - 专业灰 */
+  --neutral-50: #f8fafc;
+  --neutral-100: #f1f5f9;
+  --neutral-200: #e2e8f0;
+  --neutral-300: #cbd5e1;
+  --neutral-400: #94a3b8;
+  --neutral-500: #64748b;
+  --neutral-600: #475569;
+  --neutral-700: #334155;
+  --neutral-800: #1e293b;
+  --neutral-900: #0f172a;
+
+  /* 功能色 */
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --info: #3b82f6;
+
+  /* 阴影 */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+  /* 圆角 */
+  --radius-sm: 0.25rem;
+  --radius: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-full: 9999px;
+
+  /* 动画 */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .dark {
@@ -41,6 +103,39 @@
   --border: 217.2 32.6% 17.5%;
   --input: 217.2 32.6% 17.5%;
   --ring: 224.3 76.3% 48%;
+
+  --primary-50: #001733;
+  --primary-100: #002e66;
+  --primary-200: #004599;
+  --primary-300: #005ccc;
+  --primary-400: #0073ff;
+  --primary-500: #338fff;
+  --primary-600: #66abff;
+  --primary-700: #99c7ff;
+  --primary-800: #cce3ff;
+  --primary-900: #e6f1ff;
+
+  --accent-50: #1f1533;
+  --accent-100: #3e2a66;
+  --accent-200: #5d3f99;
+  --accent-300: #7c54cc;
+  --accent-400: #9b69ff;
+  --accent-500: #af87ff;
+  --accent-600: #c3a5ff;
+  --accent-700: #d7c3ff;
+  --accent-800: #ebe1ff;
+  --accent-900: #f5f0ff;
+
+  --neutral-50: #0f172a;
+  --neutral-100: #1e293b;
+  --neutral-200: #334155;
+  --neutral-300: #475569;
+  --neutral-400: #64748b;
+  --neutral-500: #94a3b8;
+  --neutral-600: #cbd5e1;
+  --neutral-700: #e2e8f0;
+  --neutral-800: #f1f5f9;
+  --neutral-900: #f8fafc;
 }
 
 .glass {
