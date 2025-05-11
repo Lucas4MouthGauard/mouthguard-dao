@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, Microscope, Brain, Network, Mail } from 'lucide-react'
 import { Container } from './Container'
+import { FaBitcoin } from 'react-icons/fa'
 
 const navigation = [
   {
@@ -21,6 +22,12 @@ const navigation = [
     name: 'Ecosystem',
     href: '/ecosystem',
     icon: Network,
+  },
+  {
+    name: '$Mouth',
+    href: '/mouth',
+    icon: FaBitcoin,
+    special: true,
   },
   {
     name: 'Contact',
@@ -70,10 +77,14 @@ export default function Navbar() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="px-5 py-2 rounded-lg text-[var(--neutral-300)] hover:text-[var(--neutral-50)] hover:bg-[var(--neutral-800)]/50 transition-all duration-200 flex items-center space-x-2 group"
+                className={`px-5 py-2 rounded-lg transition-all duration-200 flex items-center space-x-2 group ${
+                  item.special
+                    ? 'bg-gradient-to-r from-yellow-500 to-yellow-600 text-white hover:from-yellow-400 hover:to-yellow-500 shadow-lg hover:shadow-yellow-500/25'
+                    : 'text-[var(--neutral-300)] hover:text-[var(--neutral-50)] hover:bg-[var(--neutral-800)]/50'
+                }`}
               >
-                <item.icon className="w-4 h-4 opacity-70 group-hover:opacity-100" />
-                <span>{item.name}</span>
+                <item.icon className={`w-4 h-4 ${item.special ? 'text-white' : 'opacity-70 group-hover:opacity-100'}`} />
+                <span className={item.special ? 'font-semibold' : ''}>{item.name}</span>
               </Link>
             ))}
           </div>
@@ -106,11 +117,15 @@ export default function Navbar() {
                   <Link
                     key={item.name}
                     href={item.href}
-                    className="flex items-center space-x-3 px-4 py-3 rounded-lg text-[var(--neutral-300)] hover:text-[var(--neutral-50)] hover:bg-[var(--neutral-800)]/50 transition-colors"
+                    className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
+                      item.special
+                        ? 'bg-gradient-to-r from-yellow-500 to-yellow-600 text-white'
+                        : 'text-[var(--neutral-300)] hover:text-[var(--neutral-50)] hover:bg-[var(--neutral-800)]/50'
+                    }`}
                     onClick={() => setIsOpen(false)}
                   >
-                    <item.icon className="w-5 h-5 opacity-70" />
-                    <span className="font-medium">{item.name}</span>
+                    <item.icon className={`w-5 h-5 ${item.special ? 'text-white' : 'opacity-70'}`} />
+                    <span className={`font-medium ${item.special ? 'text-white' : ''}`}>{item.name}</span>
                   </Link>
                 ))}
               </div>
