@@ -2,157 +2,178 @@
 
 import { motion } from 'framer-motion'
 import { Target, Users, Heart, Lightbulb, Award, Globe } from 'lucide-react'
+import Head from 'next/head'
+
+const meta = {
+  title: 'About | MouthGuard DAO',
+  description: 'Learn about our mission, vision, and team at MouthGuard DAO.',
+  url: 'https://www.mouthguardonline.com/about',
+  image: 'https://api.screenshotone.com/take?url=https://www.mouthguardonline.com/about&full_page=true&format=png&viewport_width=1200&viewport_height=630',
+};
 
 export default function About() {
   return (
-    <div className="min-h-screen bg-dark-100">
-      {/* Hero Section */}
-      <section className="relative py-20">
-        <div className="absolute inset-0 bg-gradient-to-b from-dark-200 to-dark-100" />
-        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
-        
-        <div className="relative container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-center mb-16"
-          >
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 gradient-text">
-              关于我们
-            </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              我们致力于通过区块链和人工智能技术，推动口腔健康研究的发展
-            </p>
-          </motion.div>
+    <>
+      <Head>
+        <title>{meta.title}</title>
+        <meta property="og:title" content={meta.title} />
+        <meta property="og:description" content={meta.description} />
+        <meta property="og:image" content={meta.image} />
+        <meta property="og:url" content={meta.url} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={meta.title} />
+        <meta name="twitter:description" content={meta.description} />
+        <meta name="twitter:image" content={meta.image} />
+      </Head>
+      <div className="min-h-screen bg-dark-100">
+        {/* Hero Section */}
+        <section className="relative py-20">
+          <div className="absolute inset-0 bg-gradient-to-b from-dark-200 to-dark-100" />
+          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
+          
+          <div className="relative container mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-center mb-16"
+            >
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 gradient-text">
+                关于我们
+              </h1>
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                我们致力于通过区块链和人工智能技术，推动口腔健康研究的发展
+              </p>
+            </motion.div>
 
-          {/* Mission & Vision */}
-          <div className="mb-20">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <motion.div
-                className="glass-effect rounded-xl p-8"
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-              >
-                <div className="text-primary-400 mb-4">
-                  <Target className="w-8 h-8" />
-                </div>
-                <h2 className="text-2xl font-bold mb-4">我们的使命</h2>
-                <p className="text-gray-400">
-                  通过区块链技术实现口腔健康数据的安全共享，利用人工智能推动口腔疾病诊断和治疗的创新，
-                  为全球口腔健康事业做出贡献。
-                </p>
-              </motion.div>
-
-              <motion.div
-                className="glass-effect rounded-xl p-8"
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-              >
-                <div className="text-primary-400 mb-4">
-                  <Lightbulb className="w-8 h-8" />
-                </div>
-                <h2 className="text-2xl font-bold mb-4">我们的愿景</h2>
-                <p className="text-gray-400">
-                  成为全球领先的口腔健康研究平台，连接医疗机构、研究者和患者，
-                  通过技术创新改善口腔健康服务，让每个人都能获得更好的口腔健康。
-                </p>
-              </motion.div>
-            </div>
-          </div>
-
-          {/* Core Values */}
-          <div className="mb-20">
-            <h2 className="text-3xl font-bold mb-8 gradient-text text-center">
-              核心价值观
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {coreValues.map((value, index) => (
+            {/* Mission & Vision */}
+            <div className="mb-20">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <motion.div
-                  key={value.title}
-                  className="glass-effect rounded-xl p-6"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="glass-effect rounded-xl p-8"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5 }}
                   viewport={{ once: true }}
                 >
-                  <div className="text-primary-400 mb-4">{value.icon}</div>
-                  <h3 className="text-xl font-semibold mb-2">{value.title}</h3>
-                  <p className="text-gray-400">{value.description}</p>
+                  <div className="text-primary-400 mb-4">
+                    <Target className="w-8 h-8" />
+                  </div>
+                  <h2 className="text-2xl font-bold mb-4">我们的使命</h2>
+                  <p className="text-gray-400">
+                    通过区块链技术实现口腔健康数据的安全共享，利用人工智能推动口腔疾病诊断和治疗的创新，
+                    为全球口腔健康事业做出贡献。
+                  </p>
                 </motion.div>
-              ))}
-            </div>
-          </div>
 
-          {/* Team Section */}
-          <div className="mb-20">
-            <h2 className="text-3xl font-bold mb-8 gradient-text text-center">
-              核心团队
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {teamMembers.map((member, index) => (
                 <motion.div
-                  key={member.name}
-                  className="glass-effect rounded-xl p-6"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="glass-effect rounded-xl p-8"
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5 }}
                   viewport={{ once: true }}
                 >
-                  <div className="flex items-center space-x-4 mb-4">
-                    <div className="w-16 h-16 rounded-full bg-primary-500/20 flex items-center justify-center">
-                      <span className="text-2xl font-bold text-primary-400">
-                        {member.name[0]}
-                      </span>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold">{member.name}</h3>
-                      <p className="text-gray-400">{member.role}</p>
-                    </div>
+                  <div className="text-primary-400 mb-4">
+                    <Lightbulb className="w-8 h-8" />
                   </div>
-                  <p className="text-gray-400 mb-4">{member.bio}</p>
-                  <div className="flex items-center text-sm text-gray-500">
-                    <Award className="w-4 h-4 mr-2" />
-                    <span>{member.expertise}</span>
-                  </div>
+                  <h2 className="text-2xl font-bold mb-4">我们的愿景</h2>
+                  <p className="text-gray-400">
+                    成为全球领先的口腔健康研究平台，连接医疗机构、研究者和患者，
+                    通过技术创新改善口腔健康服务，让每个人都能获得更好的口腔健康。
+                  </p>
                 </motion.div>
-              ))}
+              </div>
             </div>
-          </div>
 
-          {/* Global Impact */}
-          <div>
-            <h2 className="text-3xl font-bold mb-8 gradient-text text-center">
-              全球影响
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {globalImpact.map((impact, index) => (
-                <motion.div
-                  key={impact.title}
-                  className="glass-effect rounded-xl p-6"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <div className="flex items-start space-x-4">
-                    <div className="text-primary-400">{impact.icon}</div>
-                    <div>
-                      <h3 className="text-xl font-semibold mb-2">{impact.title}</h3>
-                      <p className="text-gray-400">{impact.description}</p>
+            {/* Core Values */}
+            <div className="mb-20">
+              <h2 className="text-3xl font-bold mb-8 gradient-text text-center">
+                核心价值观
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {coreValues.map((value, index) => (
+                  <motion.div
+                    key={value.title}
+                    className="glass-effect rounded-xl p-6"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                  >
+                    <div className="text-primary-400 mb-4">{value.icon}</div>
+                    <h3 className="text-xl font-semibold mb-2">{value.title}</h3>
+                    <p className="text-gray-400">{value.description}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Team Section */}
+            <div className="mb-20">
+              <h2 className="text-3xl font-bold mb-8 gradient-text text-center">
+                核心团队
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {teamMembers.map((member, index) => (
+                  <motion.div
+                    key={member.name}
+                    className="glass-effect rounded-xl p-6"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                  >
+                    <div className="flex items-center space-x-4 mb-4">
+                      <div className="w-16 h-16 rounded-full bg-primary-500/20 flex items-center justify-center">
+                        <span className="text-2xl font-bold text-primary-400">
+                          {member.name[0]}
+                        </span>
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-semibold">{member.name}</h3>
+                        <p className="text-gray-400">{member.role}</p>
+                      </div>
                     </div>
-                  </div>
-                </motion.div>
-              ))}
+                    <p className="text-gray-400 mb-4">{member.bio}</p>
+                    <div className="flex items-center text-sm text-gray-500">
+                      <Award className="w-4 h-4 mr-2" />
+                      <span>{member.expertise}</span>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Global Impact */}
+            <div>
+              <h2 className="text-3xl font-bold mb-8 gradient-text text-center">
+                全球影响
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {globalImpact.map((impact, index) => (
+                  <motion.div
+                    key={impact.title}
+                    className="glass-effect rounded-xl p-6"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                  >
+                    <div className="flex items-start space-x-4">
+                      <div className="text-primary-400">{impact.icon}</div>
+                      <div>
+                        <h3 className="text-xl font-semibold mb-2">{impact.title}</h3>
+                        <p className="text-gray-400">{impact.description}</p>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
+    </>
   )
 }
 

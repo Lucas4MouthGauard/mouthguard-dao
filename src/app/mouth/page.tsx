@@ -3,9 +3,28 @@
 import React from 'react';
 import CopyButton from '@/components/CopyButton';
 import { FaBitcoin, FaChartLine, FaShieldAlt, FaUsers } from 'react-icons/fa';
+import Head from 'next/head';
 
-const MouthPage = () => {
-  return (
+const meta = {
+  title: '$Mouth | MouthGuard DAO',
+  description: 'The First AI-Powered Decentralized Token for Dental Health Innovation.',
+  url: 'https://www.mouthguardonline.com/mouth',
+  image: 'https://og-image.vercel.app/%24Mouth.png?theme=dark&md=1&fontSize=100px',
+};
+
+const MouthPage = () => (
+  <>
+    <Head>
+      <title>{meta.title}</title>
+      <meta property="og:title" content={meta.title} />
+      <meta property="og:description" content={meta.description} />
+      <meta property="og:image" content={meta.image} />
+      <meta property="og:url" content={meta.url} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={meta.title} />
+      <meta name="twitter:description" content={meta.description} />
+      <meta name="twitter:image" content={meta.image} />
+    </Head>
     <main className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-black pt-20">
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-4xl mx-auto">
@@ -83,7 +102,7 @@ const MouthPage = () => {
         </div>
       </div>
     </main>
-  );
-};
+  </>
+);
 
 export default MouthPage; 

@@ -3,6 +3,14 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, MapPin, Send } from 'lucide-react'
+import Head from 'next/head'
+
+const meta = {
+  title: 'Contact | MouthGuard DAO',
+  description: 'Contact us for questions, collaborations, or support at MouthGuard DAO.',
+  url: 'https://www.mouthguardonline.com/contact',
+  image: 'https://api.screenshotone.com/take?url=https://www.mouthguardonline.com/contact&full_page=true&format=png&viewport_width=1200&viewport_height=630',
+};
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -61,129 +69,142 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center"
-          >
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Contact
-              <span className="gradient-text"> Us</span>
-            </h1>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              Have questions about our platform or want to collaborate? We'd love
-              to hear from you.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section className="py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Contact Form */}
+    <>
+      <Head>
+        <title>{meta.title}</title>
+        <meta property="og:title" content={meta.title} />
+        <meta property="og:description" content={meta.description} />
+        <meta property="og:image" content={meta.image} />
+        <meta property="og:url" content={meta.url} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={meta.title} />
+        <meta name="twitter:description" content={meta.description} />
+        <meta name="twitter:image" content={meta.image} />
+      </Head>
+      <div className="min-h-screen">
+        {/* Hero Section */}
+        <section className="relative py-20 overflow-hidden">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="glass p-8 rounded-xl"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-center"
             >
-              <h2 className="text-2xl font-bold mb-6">Send us a Message</h2>
-              <form onSubmit={handleSubmit} className="space-y-6" noValidate>
-                <div>
-                  <label className="block text-sm font-medium mb-2">Name</label>
-                  <input
-                    type="text"
-                    className="w-full px-4 py-2 bg-black/50 rounded-lg border border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  />
-                  {errors.name && <div className="mt-1 text-red-400 text-sm">{errors.name}</div>}
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium mb-2">Email</label>
-                  <input
-                    type="text"
-                    className="w-full px-4 py-2 bg-black/50 rounded-lg border border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  />
-                  {errors.email && <div className="mt-1 text-red-400 text-sm">{errors.email}</div>}
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium mb-2">Subject</label>
-                  <input
-                    type="text"
-                    className="w-full px-4 py-2 bg-black/50 rounded-lg border border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    value={formData.subject}
-                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                  />
-                  {errors.subject && <div className="mt-1 text-red-400 text-sm">{errors.subject}</div>}
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium mb-2">Message</label>
-                  <textarea
-                    rows={4}
-                    className="w-full px-4 py-2 bg-black/50 rounded-lg border border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  />
-                  {errors.message && <div className="mt-1 text-red-400 text-sm">{errors.message}</div>}
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
-                </button>
-              </form>
-            </motion.div>
-
-            {/* Contact Information */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="space-y-8"
-            >
-              <div className="glass p-8 rounded-xl">
-                <h2 className="text-2xl font-bold mb-6">Contact Information</h2>
-                <div className="space-y-6">
-                  <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
-                      <Mail className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold mb-1">Email</h3>
-                      <p className="text-gray-400">contact@mouthguardonline.com</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
-                      <MapPin className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold mb-1">Address</h3>
-                      <p className="text-gray-400">
-                        707 Parnassus Avenue, San Francisco, CA 94143
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <h1 className="text-4xl md:text-6xl font-bold mb-6">
+                Contact
+                <span className="gradient-text"> Us</span>
+              </h1>
+              <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+                Have questions about our platform or want to collaborate? We'd love
+                to hear from you.
+              </p>
             </motion.div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+
+        {/* Contact Section */}
+        <section className="py-12">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              {/* Contact Form */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="glass p-8 rounded-xl"
+              >
+                <h2 className="text-2xl font-bold mb-6">Send us a Message</h2>
+                <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Name</label>
+                    <input
+                      type="text"
+                      className="w-full px-4 py-2 bg-black/50 rounded-lg border border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    />
+                    {errors.name && <div className="mt-1 text-red-400 text-sm">{errors.name}</div>}
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Email</label>
+                    <input
+                      type="text"
+                      className="w-full px-4 py-2 bg-black/50 rounded-lg border border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    />
+                    {errors.email && <div className="mt-1 text-red-400 text-sm">{errors.email}</div>}
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Subject</label>
+                    <input
+                      type="text"
+                      className="w-full px-4 py-2 bg-black/50 rounded-lg border border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      value={formData.subject}
+                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                    />
+                    {errors.subject && <div className="mt-1 text-red-400 text-sm">{errors.subject}</div>}
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Message</label>
+                    <textarea
+                      rows={4}
+                      className="w-full px-4 py-2 bg-black/50 rounded-lg border border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    />
+                    {errors.message && <div className="mt-1 text-red-400 text-sm">{errors.message}</div>}
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isSubmitting ? 'Sending...' : 'Send Message'}
+                  </button>
+                </form>
+              </motion.div>
+
+              {/* Contact Information */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="space-y-8"
+              >
+                <div className="glass p-8 rounded-xl">
+                  <h2 className="text-2xl font-bold mb-6">Contact Information</h2>
+                  <div className="space-y-6">
+                    <div className="flex items-start space-x-4">
+                      <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
+                        <Mail className="w-6 h-6 text-white" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold mb-1">Email</h3>
+                        <p className="text-gray-400">contact@mouthguardonline.com</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start space-x-4">
+                      <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
+                        <MapPin className="w-6 h-6 text-white" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold mb-1">Address</h3>
+                        <p className="text-gray-400">
+                          707 Parnassus Avenue, San Francisco, CA 94143
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </>
   )
 } 
