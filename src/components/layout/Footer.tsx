@@ -29,7 +29,7 @@ const footerLinks: Record<string, FooterLink[]> = {
     { name: 'Careers', href: '/careers' },
   ],
   community: [
-    { name: 'Twitter', href: 'https://twitter.com/mouthguard-dao', icon: Twitter },
+    { name: 'Twitter', href: 'https://x.com/MouthGuard_Dao', icon: Twitter },
   ],
 }
 

@@ -4,7 +4,7 @@ export const siteConfig = {
   url: 'https://mouthguard-dao.com',
   ogImage: 'https://mouthguard-dao.com/og.jpg',
   links: {
-    twitter: 'https://twitter.com/mouthguard-dao',
+    twitter: 'https://x.com/MouthGuard_Dao',
     github: 'https://github.com/mouthguard-dao',
   },
   navigation: [
